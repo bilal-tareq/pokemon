@@ -1,3 +1,7 @@
+
+
+
+
 async function getPokemon() {
   const input = document.getElementById("searchbar").value.toLowerCase().trim();
   if (!input) {
@@ -15,7 +19,7 @@ async function getPokemon() {
 
     const data = await response.json();
 
-    // عناصر الكارد
+    
     const card = document.querySelector(".card");
     const num = card.querySelector(".num");
     const img = card.querySelector(".sprite");
@@ -25,16 +29,15 @@ async function getPokemon() {
     const heightSpan = document.getElementById("pokeHeight");
     const weightSpan = document.getElementById("pokeWeight");
 
-    // تحديث البيانات
+    
     num.textContent = `#${data.id.toString().padStart(3, "0")}`;
     img.src = data.sprites.other["official-artwork"].front_default;
     img.alt = data.name;
     name.textContent = data.name.toUpperCase();
     speciesSpan.textContent = data.species.name;
-    heightSpan.textContent = data.height / 10; // المتر
-    weightSpan.textContent = data.weight / 10; // الكيلو جرام
+    heightSpan.textContent = data.height / 10; 
+    weightSpan.textContent = data.weight / 10; 
 
-    // عرض الأنواع
     typesDiv.innerHTML = "";
     data.types.forEach(t => {
       const span = document.createElement("span");
@@ -59,10 +62,8 @@ async function getPokemon() {
   }
 }
 
-// ربط الزرار بالـ function
 document.getElementById("searchbtn").addEventListener("click", getPokemon);
 
-// كمان لو المستخدم ضغط Enter
 document.getElementById("searchbar").addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     getPokemon();
